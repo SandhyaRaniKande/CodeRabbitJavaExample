@@ -22,6 +22,18 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /**
+     * Processes a single HTTP request to authenticate a user from a Bearer JWT.
+     *
+     * If an Authorization header with a "Bearer " token is present, extracts the JWT,
+     * obtains the username from the token, validates the token against the loaded
+     * user details, and — on success — sets a UsernamePasswordAuthenticationToken in
+     * the SecurityContext for the remainder of the request processing.
+     *
+     * @param request  the incoming HTTP request; may contain an Authorization header with a Bearer token
+     * @param response the HTTP response
+     * @param chain    the filter chain to continue processing after authentication
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
