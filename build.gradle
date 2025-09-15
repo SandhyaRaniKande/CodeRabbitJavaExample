@@ -18,7 +18,7 @@ pmd {
     toolVersion = "7.0.0"
     consoleOutput = true
     ruleSets = []
-    ruleSetFiles = files("config/pmd/pmd-ruleset.xml")
+    ruleSetFiles = files("src/main/java/com/example/demo/config/pmd/pmd-ruleset.xml")
 }
 
 repositories {
