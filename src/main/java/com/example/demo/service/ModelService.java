@@ -12,6 +12,10 @@ public class ModelService {
     private String name;
     private OpenAiModel   openAiModel;
     private  GemanaiModel gemanaiModel;
+    public ModelService()
+    {
+
+    }
     public ModelService(OpenAiModel openAiModel,GemanaiModel gemanaiModel)
     {
         this.openAiModel=openAiModel;

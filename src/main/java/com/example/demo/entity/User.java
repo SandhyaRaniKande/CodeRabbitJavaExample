@@ -19,6 +19,10 @@ public class User {
     @Column(nullable = false)
     private String role; // ROLE_USER, ROLE_ADMIN
 
+    // Bi-directional 1-to-1 relation
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private UserProfile profile;
+
 // getters & setters
 
     public Long getId() {
@@ -52,4 +56,8 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public UserProfile getProfile() { return profile; }
+
+    public void setProfile(UserProfile profile) { this.profile = profile; }
 }

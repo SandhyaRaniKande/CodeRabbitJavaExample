@@ -1,10 +1,18 @@
 package com.example.demo.controller;
 
-// Violates SRP, OCP, LSP, ISP, DIP all in one
+import org.springframework.stereotype.Component;
 
+// Violates SRP, OCP, LSP, ISP, DIP all in one
+@Component
 class Employee {
-    private String name;
-    private String role;
+    private final String name;
+    private final String role;
+
+    public Employee()
+    {
+        name="test";
+        role="developer";
+    }
 
     public Employee(String name, String role) {
         this.name = name;
