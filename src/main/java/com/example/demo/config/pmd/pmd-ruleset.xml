@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<ruleset name="SpringBoot PMD Rules"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
+                             https://pmd.sourceforge.net/ruleset_2_0_0.xsd"
+         xmlns:pmd="http://pmd.sourceforge.net/ruleset/2.0.0">
+
+    <description>
+        Custom PMD ruleset for Spring Boot REST APIs and services.
+        Includes code style, performance, error handling, and security checks.
+    </description>
+
+    <!-- === Coding Style Rules === -->
+    <rule ref="category/java/codestyle.xml/FieldNamingConventions"/>
+    <rule ref="category/java/codestyle.xml/MethodNamingConventions"/>
+    <rule ref="category/java/codestyle.xml/ClassNamingConventions"/>
+    <rule ref="category/java/codestyle.xml/UnnecessaryModifier"/>
+
+    <!-- === Error Handling & Best Practices === -->
+    <rule ref="category/java/errorprone.xml/EmptyCatchBlock"/>
+    <rule ref="category/java/errorprone.xml/UnusedImports"/>
+    <rule ref="category/java/errorprone.xml/AvoidCatchingThrowable"/>
+    <rule ref="category/java/errorprone.xml/AvoidCatchingGenericException"/>
+    <rule ref="category/java/errorprone.xml/AvoidThrowingRawExceptionTypes"/>
+    <rule ref="category/java/errorprone.xml/DoNotCallGarbageCollectionExplicitly"/>
+    <rule ref="category/java/errorprone.xml/ReturnEmptyCollectionRatherThanNull"/>
+
+    <!-- === Performance === -->
+    <rule ref="category/java/performance.xml/UseStringBufferForStringAppends"/>
+    <rule ref="category/java/performance.xml/AvoidInstantiatingObjectsInLoops"/>
+    <rule ref="category/java/performance.xml/UseCollectionIsEmpty"/>
+
+    <!-- === Design / SOLID === -->
+    <rule ref="category/java/design.xml/LawOfDemeter"/>
+    <rule ref="category/java/design.xml/UseUtilityClass"/>
+    <rule ref="category/java/design.xml/SimplifyBooleanExpressions"/>
+    <rule ref="category/java/design.xml/TooManyMethods">
+        <properties>
+            <property name="maxmethods" value="25"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/ExcessiveClassLength">
+        <properties>
+            <property name="maximum" value="1000"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/ExcessiveMethodLength">
+        <properties>
+            <property name="minimum" value="80"/>
+        </properties>
+    </rule>
+
+    <!-- === Spring Specific Customizations === -->
+    <!-- Service classes should not throw generic exceptions -->
+    <rule ref="category/java/errorprone.xml/AvoidThrowingRawExceptionTypes">
+        <priority>2</priority>
+    </rule>
+
+    <!-- Controller methods should be small -->
+    <rule ref="category/java/design.xml/ExcessiveMethodLength">
+        <properties>
+            <property name="minimum" value="50"/>
+        </properties>
+    </rule>
+    <!-- Enforce final keyword for constants -->
+    <rule ref="category/java/codestyle.xml/UnnecessaryModifier"/>
+
+</ruleset>
