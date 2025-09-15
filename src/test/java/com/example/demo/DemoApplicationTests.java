@@ -29,7 +29,7 @@ class DemoApplicationTests {
     void createUserHappyPath() {
         when(repo.save(any())).thenAnswer(inv -> { User u = inv.getArgument(0); u.setId(1L); return u; });
         UserDto req = new UserDto(); req.setUsername("a"); req.setPassword("p");
-        UserDto out = svc.createUser(req);
+        User out = svc.createUser(req);
         assertNotNull(out.getId());
         assertEquals("a", out.getUsername());
     }

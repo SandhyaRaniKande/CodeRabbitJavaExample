@@ -1,8 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.UserDto;
+import com.example.demo.entity.User;
 
 public interface UserService {
-    UserDto createUser(UserDto user);
+    User createUser(UserDto user);
     UserDto findById(Long id);
 }

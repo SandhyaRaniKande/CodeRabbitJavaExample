@@ -4,7 +4,6 @@ import com.example.demo.dto.UserDto;
 import com.example.demo.entity.User;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,8 +16,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
-    public UserDto createUser(UserDto userDto) {
+    public User createUser(UserDto userDto) {
         User user = new User();
         user.setUsername(userDto.getUsername());
 // in real app hash the password
@@ -26,7 +24,7 @@ public class UserServiceImpl implements UserService {
         user.setRole(userDto.getRole() == null ? "ROLE_USER" : userDto.getRole());
 
         User saved = userRepository.save(user);
-        return toDto(saved);
+        return (saved);
     }
 
     @Override

@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.CreateUserRequest;
 import com.example.demo.dto.UserDto;
+import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +19,13 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> create( @RequestBody CreateUserRequest req) {
+    @Transactional
+    public ResponseEntity<User> create(@RequestBody CreateUserRequest req) {
         UserDto dto = new UserDto();
         dto.setUsername(req.getUsername());
         dto.setPassword(req.getPassword());
         dto.setRole(req.getRole());
-        UserDto created = userService.createUser(dto);
+        User created = userService.createUser(dto);
         return ResponseEntity.ok(created);
     }
 
